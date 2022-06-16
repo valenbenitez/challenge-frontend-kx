@@ -1,0 +1,19 @@
+.d{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+}
+
+.inputS{
+    font-style:italic;
+    margin: 5px;
+}
+
+.buttonC{
+    margin: 10px !important;
+}
+
+.paper{
+    /* background-color: #ff5500 !important; */
+    background-color: rgb(243, 243, 243);
+}

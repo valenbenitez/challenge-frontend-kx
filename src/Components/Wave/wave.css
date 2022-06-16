@@ -1,0 +1,7 @@
+html,body{
+    overflow: hidden;
+}
+.wave{
+    margin-top: 5rem;
+    height: 50vh;
+}

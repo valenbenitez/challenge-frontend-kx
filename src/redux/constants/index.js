@@ -1,0 +1,3 @@
+//GET
+export const GET_COMERCIOS = 'GET_COMERCIOS'
+export const FULL_SEARCH = 'FULL_SEARCH'
