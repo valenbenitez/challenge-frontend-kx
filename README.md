@@ -1,4 +1,6 @@
-# Para instalar dependencias
+# Tabla de datos
+
+![image](https://user-images.githubusercontent.com/96792646/174190424-9a982b85-5059-4b1c-a457-7848d1945f8a.png)
 
 npm i
 
