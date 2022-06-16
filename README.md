@@ -2,11 +2,10 @@
 
 ![image](https://user-images.githubusercontent.com/96792646/174190424-9a982b85-5059-4b1c-a457-7848d1945f8a.png)
 
-npm i
 
-## Available Scripts
+## Deberas correr los siguientes comandos
 
-In the project directory, you can run:
+### `npm i`
 
 ### `npm start`
 
