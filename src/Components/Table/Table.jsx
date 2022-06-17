@@ -40,13 +40,21 @@ export default function Table() {
   };
 
   const handleSelectComercio = (e) => {
-    e.preventDefault();
-    dispatch(orderComercio(e.target.value));
+    if (e.target.value === "clear") {
+      dispatch(getComercios());
+    } else {
+      e.preventDefault();
+      dispatch(orderComercio(e.target.value));
+    }
   };
 
   const handleSelectCuit = (e) => {
-    e.preventDefault();
-    dispatch(orderCuit(e.target.value));
+    if (e.target.value === "clear") {
+      dispatch(getComercios());
+    } else {
+      e.preventDefault();
+      dispatch(orderCuit(e.target.value));
+    }
   };
 
   const handleNext = () => {
@@ -94,7 +102,7 @@ export default function Table() {
                 Comercio
                 <br />
                 <select onChange={(e) => handleSelectComercio(e)}>
-                  <option value="asc">Order</option>
+                  <option value="clear">Order</option>
                   <option value="asc">ASC</option>
                   <option value="desc">DESC</option>
                 </select>
@@ -102,7 +110,7 @@ export default function Table() {
               <th>
                 CUIT <br />
                 <select onChange={(e) => handleSelectCuit(e)}>
-                  <option value="desc">Order</option>
+                  <option value="clear">Order</option>
                   <option value="asc">ASC</option>
                   <option value="desc">DESC</option>
                 </select>

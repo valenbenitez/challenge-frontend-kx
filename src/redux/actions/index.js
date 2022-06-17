@@ -1,20 +1,26 @@
+import { getComerciosList } from '../../services/commerces'
+import { filterByAct, filterById } from '../../services/filtered'
+import { orderCommercesByCuit, orderCommerces } from '../../services/ordinances'
+import { changePage } from '../../services/pagination'
 import { GET_COMERCIOS, FULL_SEARCH } from '../constants/index'
 
 const axios = require('axios')
 
 const host = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3001'
-let url = `${host}/comercios?_page=1&_limit=10&`
+let url = `${host}/comercios?_page=1&_limit=10`
 let queryParams = {}
 
 export const getComercios = () => {
-  return function (dispatch) {
-    axios.get(`${host}/comercios?_page=1&_limit=10`).then(comercios => {
-      console.log(`${host}/comercios?_page=1&_limit=10`)
+  return async function (dispatch) {
+    try {
+      const list = await getComerciosList()
       dispatch({
         type: GET_COMERCIOS,
-        payload: comercios.data,
+        payload: list
       })
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -34,98 +40,87 @@ export const fullSearch = input => {
 }
 
 export const orderComercio = input => {
-  return function (dispatch) {
-    queryParams.comercio = input
-    if (queryParams.cuit) {
-      url = `${host}/comercios?_page=1&_limit=10&`
-      url = url + `_sort=comercio,CUIT&_order=${queryParams.comercio},${queryParams.cuit}&`
-    } else {
-      url = `${host}/comercios?_page=1&_limit=10&`
-      url = url + `_sort=comercio&_order=${input}&`
-    }
-    console.log(url);
-    axios.get(url).then(comercios => {
+  return async function (dispatch) {
+    try {
+      const order = await orderCommerces(input)
       dispatch({
         type: GET_COMERCIOS,
-        payload: comercios.data,
+        payload: order
       })
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
 export const orderCuit = input => {
-  return function (dispatch) {
-    queryParams.cuit = input
-    if (queryParams.comercio) {
-      url = `${host}/comercios?_page=1&_limit=10&`
-      url = url + `_sort=CUIT,comercio&_order=${queryParams.cuit},${queryParams.comercio}&`
-    } else {
-      url = `${host}/comercios?_page=1&_limit=10&`
-      url = url + `_sort=CUIT&_order=${input}&`
-    }
-    console.log(url);
-    axios.get(url).then(comercios => {
+  return async function (dispatch) {
+    try {
+      const sorted = await orderCommercesByCuit(input)
       dispatch({
         type: GET_COMERCIOS,
-        payload: comercios.data,
+        payload: sorted,
       })
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
 export const filterActivo = input => {
-  return function (dispatch) {
-    if (queryParams.activo) {
-      url = ``
-      url = url + `activo=${input}&`
-    } else {
-      queryParams.activo = input
-      url = url + `activo=${input}&`
-    }
-    console.log(url);
-    axios.get(url).then(comercios => {
+  return async function (dispatch) {
+    try {
+      const filtered = await filterByAct(input)
       dispatch({
         type: GET_COMERCIOS,
-        payload: comercios.data,
+        payload: filtered
       })
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
-export const filterId = id => {
-  return function (dispatch) {
-    axios.get(`${host}/comercios?_page=1&_limit=10&id=${id}`).then(comercios => {
-      console.log(`${host}/comercios?_page=1&_limit=10&id=${id}`);
+export const filterId = (id) => {
+  return async function (dispatch) {
+    try {
+      const data1 = await filterById(id)
       dispatch({
         type: GET_COMERCIOS,
-        payload: comercios.data,
+        payload: data1,
       })
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
 export const nextPage = page => {
-  page = page + 1
-  return function (dispatch) {
-    axios.get(`${host}/comercios?_page=${page}&_limit=10&`).then(comercios => {
-      console.log(`${host}/comercios?_page=${page}&_limit=10&`);
+  return async function (dispatch) {
+    page = page + 1
+    try {
+      const data = await changePage(page)
       dispatch({
         type: GET_COMERCIOS,
-        payload: comercios.data,
+        payload: data,
       })
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
 export const previousPage = page => {
-  return function (dispatch) {
+  return async function (dispatch) {
     page = page - 1
-    axios.get(`${host}/comercios?_page=${page}&_limit=10&`).then(comercios => {
-      console.log(`${host}/comercios?_page=${page}&_limit=10&`);
+    try {
+      const data = await changePage(page)
       dispatch({
         type: GET_COMERCIOS,
-        payload: comercios.data,
+        payload: data,
       })
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
