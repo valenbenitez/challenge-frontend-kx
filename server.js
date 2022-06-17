@@ -1,9 +1,18 @@
-const express = require('express')
-const path = require('path');
+const jsonServer = require('json-server');
+const server = jsonServer.create();
+const middlewares = jsonServer.defaults({
+  static: './build'
+});
+const router = jsonServer.router('./db.json');
 
-const app = express()
-const port = process.env.PORT || 3000 // Heroku will need the PORT environment variable
+server.use(middlewares);
+server.use(jsonServer.rewriter({
+  '/api/*': '/$1',
+}))
+server.use(router);
 
-app.use(express.static(path.join(__dirname, 'build')));
+const PORT = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`App is live on port ${port}!`))
+server.listen(PORT, () => {
+  console.log('Server is running on port ' + PORT);
+});
