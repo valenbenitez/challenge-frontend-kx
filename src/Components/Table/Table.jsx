@@ -1,15 +1,10 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getComercios,
-  orderComercio,
-  orderCuit,
-  filterActivo,
-  nextPage,
-  previousPage,
-  filterId,
-} from "../../redux/actions/index";
+import { getComercios } from "../../redux/actions/commerces";
+import { orderComercio, orderCuit } from "../../redux/actions/ordinances";
+import { filterActivo, filterId } from "../../redux/actions/filtered";
+import { previousPage, nextPage } from "../../redux/actions/pagination";
 import InputSearch from "../InputSearch/InputSearch";
 import Wave from "../Wave/Wave";
 

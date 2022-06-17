@@ -1,16 +1,15 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
+import { fullSearch, getComercios } from "../../redux/actions/commerces";
+import "./input.css";
+
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import { useDispatch } from "react-redux";
-import { fullSearch, getComercios } from "../../redux/actions/index";
-
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Stack from "@mui/material/Stack";
-
-import "./input.css";
 
 export default function CustomizedInputBase() {
   const dispatch = useDispatch();
@@ -23,7 +22,7 @@ export default function CustomizedInputBase() {
   function handleSubmit(e) {
     e.preventDefault();
     if (input === "") {
-      return alert('Porfavor ingrese lo que desea buscar')
+      return alert("Porfavor ingrese lo que desea buscar");
     } else {
       dispatch(fullSearch(input));
       setInput("");

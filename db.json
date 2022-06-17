@@ -159,7 +159,7 @@
       "Concepto5": 51,
       "Concepto6": 61,
       "balanceActual": 800,
-      "activo": "true",
+      "activo": "false",
       "ultimaVenta": "13/12/5000"
     },
     {
@@ -187,7 +187,7 @@
       "Concepto5": 51,
       "Concepto6": 61,
       "balanceActual": 800,
-      "activo": "true",
+      "activo": "false",
       "ultimaVenta": "13/12/5000"
     }
   ]
