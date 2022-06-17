@@ -7,8 +7,6 @@ import { GET_COMERCIOS, FULL_SEARCH } from '../constants/index'
 const axios = require('axios')
 
 const host = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3001'
-let url = `${host}/comercios?_page=1&_limit=10`
-let queryParams = {}
 
 export const getComercios = () => {
   return async function (dispatch) {
@@ -93,19 +91,6 @@ export const filterId = id => {
   }
 }
 
-// export const filterId = (id) => {
-//   return async function (dispatch) {
-//     try {
-//       const data1 = await filterById(id)
-//       dispatch({
-//         type: GET_COMERCIOS,
-//         payload: data1,
-//       })
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
-// }
 
 export const nextPage = page => {
   return async function (dispatch) {
