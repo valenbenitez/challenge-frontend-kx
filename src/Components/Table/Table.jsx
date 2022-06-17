@@ -65,12 +65,15 @@ export default function Table() {
   };
 
   const filterById = (e) => {
-    dispatch(filterId(e.target.value))
-  }
+    if (e.target.value === "") {
+      dispatch(getComercios());
+    } else {
+      dispatch(filterId(e.target.value));
+    }
+  };
 
   return (
     <>
-    
       <div className="div1">
         <div className="div2">
           <InputSearch />
@@ -79,8 +82,13 @@ export default function Table() {
         <table>
           <thead>
             <tr>
-              <th>ID <br/>
-              <input onChange={(e) => filterById(e)} placeholder="Id" type='number'></input>
+              <th>
+                ID <br />
+                <input
+                  onChange={(e) => filterById(e)}
+                  placeholder="Id"
+                  type="number"
+                ></input>
               </th>
               <th>
                 Comercio
@@ -150,7 +158,7 @@ export default function Table() {
         </Stack>
       </div>
       <footer>
-        <Wave/>
+        <Wave />
       </footer>
     </>
   );

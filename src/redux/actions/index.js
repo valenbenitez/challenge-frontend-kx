@@ -9,6 +9,7 @@ let queryParams = {}
 export const getComercios = () => {
   return function (dispatch) {
     axios.get(`${host}/comercios?_page=1&_limit=10`).then(comercios => {
+      console.log(`${host}/comercios?_page=1&_limit=10`)
       dispatch({
         type: GET_COMERCIOS,
         payload: comercios.data,
@@ -21,6 +22,7 @@ export const fullSearch = input => {
   return async function (dispatch) {
     try {
       const result = await axios.get(`${host}/comercios?_page=1&_limit=10&q=${input}`)
+      console.log(`${host}/comercios?_page=1&_limit=10&q=${input}`);
       return dispatch({
         type: FULL_SEARCH,
         payload: result.data,
@@ -41,6 +43,7 @@ export const orderComercio = input => {
       url = `${host}/comercios?_page=1&_limit=10&`
       url = url + `_sort=comercio&_order=${input}&`
     }
+    console.log(url);
     axios.get(url).then(comercios => {
       dispatch({
         type: GET_COMERCIOS,
@@ -60,6 +63,7 @@ export const orderCuit = input => {
       url = `${host}/comercios?_page=1&_limit=10&`
       url = url + `_sort=CUIT&_order=${input}&`
     }
+    console.log(url);
     axios.get(url).then(comercios => {
       dispatch({
         type: GET_COMERCIOS,
@@ -78,6 +82,7 @@ export const filterActivo = input => {
       queryParams.activo = input
       url = url + `activo=${input}&`
     }
+    console.log(url);
     axios.get(url).then(comercios => {
       dispatch({
         type: GET_COMERCIOS,
@@ -90,6 +95,7 @@ export const filterActivo = input => {
 export const filterId = id => {
   return function (dispatch) {
     axios.get(`${host}/comercios?_page=1&_limit=10&id=${id}`).then(comercios => {
+      console.log(`${host}/comercios?_page=1&_limit=10&id=${id}`);
       dispatch({
         type: GET_COMERCIOS,
         payload: comercios.data,
@@ -99,9 +105,10 @@ export const filterId = id => {
 }
 
 export const nextPage = page => {
+  page = page + 1
   return function (dispatch) {
-    page = page + 1
     axios.get(`${host}/comercios?_page=${page}&_limit=10&`).then(comercios => {
+      console.log(`${host}/comercios?_page=${page}&_limit=10&`);
       dispatch({
         type: GET_COMERCIOS,
         payload: comercios.data,
@@ -114,6 +121,7 @@ export const previousPage = page => {
   return function (dispatch) {
     page = page - 1
     axios.get(`${host}/comercios?_page=${page}&_limit=10&`).then(comercios => {
+      console.log(`${host}/comercios?_page=${page}&_limit=10&`);
       dispatch({
         type: GET_COMERCIOS,
         payload: comercios.data,
