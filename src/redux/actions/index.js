@@ -2,12 +2,12 @@ import { GET_COMERCIOS, FULL_SEARCH } from '../constants/index'
 
 const axios = require("axios")
 
-let url = `http://localhost:3000/comercios?_page=1&_limit=10&`
+let url = `https://tabla-de-datos.herokuapp.com/comercios?_page=1&_limit=10&`
 let queryParams = {}
 
 export const getComercios = () => {
     return function (dispatch) {
-        axios.get('http://localhost:3000/comercios?_page=1&_limit=10')
+        axios.get('https://tabla-de-datos.herokuapp.com/comercios?_page=1&_limit=10')
             .then(comercios => {
                 dispatch({
                     type: GET_COMERCIOS,
@@ -20,7 +20,7 @@ export const getComercios = () => {
 export const fullSearch = (input) => {
     return async function (dispatch) {
         try {
-            const result = await axios.get(`http://localhost:3000/comercios?_page=1&_limit=10&q=${input}`)
+            const result = await axios.get(`https://tabla-de-datos.herokuapp.com/comercios?_page=1&_limit=10&q=${input}`)
             return dispatch({
                 type: FULL_SEARCH,
                 payload: result.data
@@ -35,10 +35,10 @@ export const orderComercio = (input) => {
     return function (dispatch) {
         queryParams.comercio = input
         if (queryParams.cuit) {
-            url = 'http://localhost:3000/comercios?_page=1&_limit=10&'
+            url = 'https://tabla-de-datos.herokuapp.com/comercios?_page=1&_limit=10&'
             url = url + `_sort=comercio,CUIT&_order=${queryParams.comercio},${queryParams.cuit}&`
         } else {
-            url = 'http://localhost:3000/comercios?_page=1&_limit=10&'
+            url = 'https://tabla-de-datos.herokuapp.com/comercios?_page=1&_limit=10&'
             url = url + `_sort=comercio&_order=${input}&`
         }
         axios.get(url)
@@ -55,10 +55,10 @@ export const orderCuit = (input) => {
     return function (dispatch) {
         queryParams.cuit = input
         if (queryParams.comercio) {
-            url = 'http://localhost:3000/comercios?_page=1&_limit=10&'
+            url = 'https://tabla-de-datos.herokuapp.com/comercios?_page=1&_limit=10&'
             url = url + `_sort=CUIT,comercio&_order=${queryParams.cuit},${queryParams.comercio}&`
         } else {
-            url = 'http://localhost:3000/comercios?_page=1&_limit=10&'
+            url = 'https://tabla-de-datos.herokuapp.com/comercios?_page=1&_limit=10&'
             url = url + `_sort=CUIT&_order=${input}&`
         }
         axios.get(url)
@@ -74,7 +74,7 @@ export const orderCuit = (input) => {
 export const filterActivo = (input) => {
     return function (dispatch) {
         if (queryParams.activo) {
-            url = 'http://localhost:3000/comercios?_page=1&_limit=10&'
+            url = 'https://tabla-de-datos.herokuapp.com/comercios?_page=1&_limit=10&'
             url = url + `activo=${input}&`
         } else {
             queryParams.activo = input
@@ -92,7 +92,7 @@ export const filterActivo = (input) => {
 
 export const filterId = (id) => {
     return function (dispatch) {
-        axios.get(`http://localhost:3000/comercios?_page=1&_limit=10&id=${id}`)
+        axios.get(`https://tabla-de-datos.herokuapp.com/comercios?_page=1&_limit=10&id=${id}`)
         .then(comercios => {
             dispatch({
                 type: GET_COMERCIOS,
@@ -105,7 +105,7 @@ export const filterId = (id) => {
 export const nextPage = (page) => {
     return function (dispatch) {
         page = page + 1
-        axios.get(`http://localhost:3000/comercios?_page=${page}&_limit=10&`)
+        axios.get(`https://tabla-de-datos.herokuapp.com/comercios?_page=${page}&_limit=10&`)
             .then(comercios => {
                 dispatch({
                     type: GET_COMERCIOS,
@@ -118,7 +118,7 @@ export const nextPage = (page) => {
 export const previousPage = (page) => {
     return function (dispatch) {
         page = page - 1
-        axios.get(`http://localhost:3000/comercios?_page=${page}&_limit=10&`)
+        axios.get(`https://tabla-de-datos.herokuapp.com/comercios?_page=${page}&_limit=10&`)
             .then(comercios => {
                 dispatch({
                     type: GET_COMERCIOS,
