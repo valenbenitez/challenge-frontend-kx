@@ -90,6 +90,18 @@ export const filterActivo = (input) => {
     }
 }
 
+export const filterId = (id) => {
+    return function (dispatch) {
+        axios.get(`http://localhost:3000/comercios?_page=1&_limit=10&id=${id}`)
+        .then(comercios => {
+            dispatch({
+                type: GET_COMERCIOS,
+                payload: comercios.data
+            })
+        })
+    }
+}
+
 export const nextPage = (page) => {
     return function (dispatch) {
         page = page + 1

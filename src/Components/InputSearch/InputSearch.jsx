@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Stack from "@mui/material/Stack";
 
-import './input.css'
+import "./input.css";
 
 export default function CustomizedInputBase() {
   const dispatch = useDispatch();
@@ -23,15 +23,15 @@ export default function CustomizedInputBase() {
   function handleSubmit(e) {
     e.preventDefault();
     if (input === "") {
-      return alert("please type some");
+      return alert('Porfavor ingrese lo que desea buscar')
     } else {
       dispatch(fullSearch(input));
-      setInput('')
+      setInput("");
     }
   }
 
-  function handleClear(){
-    dispatch(getComercios())
+  function handleClear() {
+    dispatch(getComercios());
   }
 
   return (
@@ -61,8 +61,14 @@ export default function CustomizedInputBase() {
         </IconButton>
       </Paper>
       <Stack>
-        <Button onClick={handleClear} className="buttonC" variant="outlined" color="error" startIcon={<DeleteIcon />}>
-          Clear filters
+        <Button
+          onClick={handleClear}
+          className="buttonC"
+          variant="outlined"
+          color="error"
+          startIcon={<DeleteIcon />}
+        >
+          limpiar filtros
         </Button>
       </Stack>
     </div>

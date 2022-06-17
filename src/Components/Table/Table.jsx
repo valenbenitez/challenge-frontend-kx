@@ -8,6 +8,7 @@ import {
   filterActivo,
   nextPage,
   previousPage,
+  filterId,
 } from "../../redux/actions/index";
 import InputSearch from "../InputSearch/InputSearch";
 import Wave from "../Wave/Wave";
@@ -63,8 +64,13 @@ export default function Table() {
     }
   };
 
+  const filterById = (e) => {
+    dispatch(filterId(e.target.value))
+  }
+
   return (
     <>
+    
       <div className="div1">
         <div className="div2">
           <InputSearch />
@@ -73,7 +79,9 @@ export default function Table() {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>ID <br/>
+              <input onChange={(e) => filterById(e)} placeholder="Id" type='number'></input>
+              </th>
               <th>
                 Comercio
                 <br />
@@ -142,7 +150,7 @@ export default function Table() {
         </Stack>
       </div>
       <footer>
-        <Wave />
+        <Wave/>
       </footer>
     </>
   );

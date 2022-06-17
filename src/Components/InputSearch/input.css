@@ -1,19 +1,21 @@
-.d{
-    display: flex;
-    flex-direction: row;
-    align-items:center;
+.d {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 
-.inputS{
-    font-style:italic;
-    margin: 5px;
+.inputS {
+  display: flex;
+  font-style: italic;
+  margin: 5px;
 }
 
-.buttonC{
-    margin: 10px !important;
+.buttonC {
+  margin: 10px !important;
 }
 
-.paper{
-    /* background-color: #ff5500 !important; */
-    background-color: rgb(243, 243, 243);
+.paper {
+  /* background-color: #ff5500 !important; */
+  background-color: rgb(243, 243, 243);
 }
