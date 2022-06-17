@@ -1,6 +1,6 @@
 # Tabla de datos
 
-![image](https://user-images.githubusercontent.com/96792646/174190424-9a982b85-5059-4b1c-a457-7848d1945f8a.png)
+![image](https://user-images.githubusercontent.com/96792646/174197836-429ca0b1-ac0e-4898-80c1-7a8c4e2d5c9b.png)
 
 
 ## Deberas correr los siguientes comandos en este orden
