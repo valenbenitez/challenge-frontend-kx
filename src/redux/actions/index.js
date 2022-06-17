@@ -81,19 +81,31 @@ export const filterActivo = input => {
   }
 }
 
-export const filterId = (id) => {
-  return async function (dispatch) {
-    try {
-      const data1 = await filterById(id)
+export const filterId = id => {
+  return function (dispatch) {
+    axios.get(`${host}/comercios?_page=1&_limit=10&id=${id}`).then(comercios => {
+      console.log(`${host}/comercios?_page=1&_limit=10&id=${id}`);
       dispatch({
         type: GET_COMERCIOS,
-        payload: data1,
+        payload: comercios.data,
       })
-    } catch (error) {
-      console.log(error)
-    }
+    })
   }
 }
+
+// export const filterId = (id) => {
+//   return async function (dispatch) {
+//     try {
+//       const data1 = await filterById(id)
+//       dispatch({
+//         type: GET_COMERCIOS,
+//         payload: data1,
+//       })
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
 
 export const nextPage = page => {
   return async function (dispatch) {
