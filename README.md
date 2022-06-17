@@ -7,8 +7,6 @@
 
 ### `npm i`
 
-### `npm run server`
-
 ### `npm start`
 
 Runs the app in the development mode.\
